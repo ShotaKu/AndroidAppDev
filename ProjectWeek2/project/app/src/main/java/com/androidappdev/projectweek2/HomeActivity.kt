@@ -16,15 +16,28 @@ class HomeActivity : AppCompatActivity() {
         //calculateAction(R.layout.activity_home);
     }
     fun calculateAction(v: View){
-        var a = input1_et.text.toString().toInt()
-        var b = input2_et.text.toString().toInt()
-        var btn = (v as Button);
-        if(btn != null){
-            var operator = btn.text.toString()
-            var result = calculate(a,b,operator);
-            message.text = "$result";   //special operation to change value to String.
+        var a = 0;
+        var b = 0;
+/*        when(v){
+            add ->{
+                //You can also write like this.
+            }
+        }*/
+        try{
+            a = input1_et.text.toString().toInt()
+            b = input2_et.text.toString().toInt()
+            var btn = (v as Button)
+            if(btn != null){
+                var operator = btn.text.toString()
+                var result = calculate(a,b,operator)
+                message.text = "$result"   //special operation to change value to String.
+            }
+        }catch (t: Throwable){
+
         }
     }
+
+
 
     fun calculate(a: Int, b: Int, op:String):String{
         var result = 0;
@@ -32,10 +45,14 @@ class HomeActivity : AppCompatActivity() {
             result = add(a,b)
         }
         else if(op == "-"){
-            result = sub(a,b);
+            result = sub(a,b)
         }
         else if(op == "X"){
-            result = multi(a,b);
+            result = multi(a,b)
+        }
+        else if(op == "AC"){
+            clear();
+            return "";
         }
         else{
             if(b == 0){
@@ -56,10 +73,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun multi( multiplicand: Int, multiplier: Int): Int{
-        return  multiplicand + multiplier
+        return  multiplicand * multiplier
     }
 
     fun div(dividend: Int, devisor: Int): Int{
         return dividend / devisor;
+    }
+
+    fun clear(){
+        input1_et.setText("")
+        input2_et.setText("")
+        message.text = ""
     }
 }
