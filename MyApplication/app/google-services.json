@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "715848706924",
+    "firebase_url": "https://audorm-c6dae.firebaseio.com",
+    "project_id": "audorm-c6dae",
+    "storage_bucket": "audorm-c6dae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715848706924:android:81aa8495a5c624cf",
+        "android_client_info": {
+          "package_name": "audorm.cs3231.com.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715848706924-jmqtljbugcon9qa13g5uoh43683vj18o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlEYKJLNs5I2PBES1RJ9GYNfd1-TDnAZ4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

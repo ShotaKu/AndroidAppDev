@@ -16,29 +16,28 @@ class StudentAdapter(val studentList: ArrayList<Student>):RecyclerView.Adapter<S
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.customcell,parent,false)
+/*        v.setOnClickListener{
+            var message = v.subtitle.text +":"+ v.title.text
+            Toast.makeText(it,message, Toast.LENGTH_LONG).show()
+        }*/
         val newView = ViewHolder(v)
         return newView
     }
 
-    override fun onBindViewHolder(p0: StudentAdapter.ViewHolder, p1: Int) {
-        p0.studentName.text = studentList[p1].name;
-        p0.id.text = studentList[p1].id;
-        p0.itemView.setOnClickListener {
+    override fun onBindViewHolder(viewHolder: StudentAdapter.ViewHolder, p1: Int) {
+        var name = studentList[p1].name;
+        var id = studentList[p1].id
+        viewHolder.studentName.text = name;
+        viewHolder.id.text = id;
+        viewHolder.itemView.setOnClickListener {
             //Toast.makeText(this, studentList[p1].id+": "+studentList[p1].name, Toast.LENGTH_SHORT).show()
             //TODO create toast pop up when click card view
+            Toast.makeText(it.context,id+":"+name, Toast.LENGTH_LONG).show()
         }
     }
-
 
     class ViewHolder(v: View): RecyclerView.ViewHolder(v) {
         val studentName = v.title
         val id = v.subtitle
-    }
-
-    fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
-        itemView.setOnClickListener {
-            event.invoke(getAdapterPosition(), getItemViewType())
-        }
-        return this
     }
 }
