@@ -3,13 +3,20 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@android:color/holo_red_dark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowFullscreen">false</item>
-        <item name="android:windowContentOverlay">@null</item>
+        <item name="colorAccent">@android:color/holo_red_dark</item>
+        <!--<item name="windowNoTitle">true</item>-->
+        <!--<item name="windowActionBar">false</item>-->
+        <!--<item name="android:windowFullscreen">false</item>-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+        <!--<item name="android:actionBarStyle">@style/actionBar</item>-->
+
     </style>
+    <!--<style name="actionBar" parent="Widget.AppCompat.ActionBar">-->
+        <!--&lt;!&ndash; タイトルバーの背景色 &ndash;&gt;-->
+        <!--<item name="android:background">#e500000</item>-->
+    <!--</style>-->
+
 
 </resources>
