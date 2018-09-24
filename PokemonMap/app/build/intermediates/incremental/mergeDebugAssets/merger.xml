@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\5618455\CS3431\git\AndroidAppDev\PokemonMap\app\src\main\assets"/><source path="D:\5618455\CS3431\git\AndroidAppDev\PokemonMap\app\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\5618455\CS3431\git\AndroidAppDev\PokemonMap\app\src\debug\assets"/></dataSet></merger>
