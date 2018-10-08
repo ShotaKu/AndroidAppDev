@@ -3,6 +3,7 @@ package com.shota.android.twopage
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.shota.android.twopage.R.id.text
+import com.shota.android.twopage.R.id.textView
 import kotlinx.android.synthetic.main.activity_second.*
 
 class SecondActivity : AppCompatActivity() {
