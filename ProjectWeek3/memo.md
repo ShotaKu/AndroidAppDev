@@ -77,16 +77,50 @@
 3. Create class for store data in cell
     + Create new .kt file at app>java>com.**Project_company_name**.**project_name**
     + Kotlin class format
-    ```kotlin
-    package com.shota.studentlistapp
+        ```kotlin
+        package com.shota.studentlistapp
 
-    data class Student(val id: String,val name: String){
+        data class Student(val id: String,val name: String){
 
-    }
+        }
+        ```
+    + Create student class as [example](https://github.com/ShotaKu/AndroidAppDev/blob/master/ProjectWeek3/app/src/main/java/com/shota/studentlistapp/Student.kt)
+4. Create Adapter class for create list cell
+    + [Example code](https://github.com/ShotaKu/AndroidAppDev/blob/master/ProjectWeek3/app/src/main/java/com/shota/studentlistapp/StudentAdapter.kt)
+
+5. Create recycler view on main activity.
+    + This is xml code on layout/activlity_list(main).xml
+    ```xml
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     ```
+    + Using recycler view with your custom cell.
+    ```kotlin
+        //Get list on layout
+        val rView = recyclerView
+        rView.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL, false)
 
-### In progress (to be continue to adapter class)
+        //Make data.
+        val students = ArrayList<Student>()
+        student.add(Student("5618455","Shopan Kuroda"))
+        student.add(Student("5699999","Tanapol"))
 
+        //Making adapter with students inputs
+        var adapter = StudentAdapter(students);
+
+        //Change list format as custom cells.
+        rView.adapter = adapter;
+    ```
 <!-- 4. Crete Adapter class for useing recycler view in app
     + This class is created for overwrite recycler view functions as wanted behavior
     + You have too overwrite 3 functions:
