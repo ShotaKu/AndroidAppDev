@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RequestBoxActivity" />
+        <activity android:name=".RequestDetailActivity" />
+        <activity android:name=".BookDetailActivity" />
+        <activity android:name=".UserDetailActivity" />
+        <activity android:name=".TradeScheduleActivity" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".RegistrationActivity"></activity>
     </application>
 
 </manifest>
