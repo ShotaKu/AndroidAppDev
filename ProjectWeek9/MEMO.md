@@ -12,15 +12,15 @@ In my case, I choose Studio Ghibli API for example.
 
 So, I create Film class for getting data from API. You should make class which has fields same with JSON object. 
  - Film Class
-    - [Film class](https://github.com/ShotaKu/AndroidAppDev)
+    - [Film class](https://github.com/ShotaKu/AndroidAppDev/blob/master/ProjectWeek9/StudioGhibli/app/src/main/java/shota/cs3231/com/studioghibli/ghibli/Film.kt)
     - [Film Json](https://ghibliapi.herokuapp.com/films/2baf70d1-42bb-4437-b551-e5fed5a87abe)
  - FilmIndex Class
-     - [FilmIndex](https://github.com/ShotaKu/AndroidAppDev)
+     - [FilmIndex](https://github.com/ShotaKu/AndroidAppDev/blob/master/ProjectWeek9/StudioGhibli/app/src/main/java/shota/cs3231/com/studioghibli/ghibli/FilmIndex.kt)
      - [Films Json](https://ghibliapi.herokuapp.com/films)
 
 You can see that my class has same fields like JSON.
-### How to parce JSON to Custom class
-Let's think about after you recive JSON data successfully. You have to parce the JSON String data to custom class object. 
+### How to parse JSON to Custom class
+Let's think about after you recive JSON data successfully. You have to parse the JSON String data to custom class object. 
  1. import json library of [google/gson](https://github.com/google/gson) by add following code at **build.gradle(Module:app)**
 
     ```Gradle
@@ -65,4 +65,5 @@ This constructor will make array of Film from input ```json:String```. You can s
             }
         }
         ```
-
+    - [Recycler view adapter](https://github.com/ShotaKu/AndroidAppDev/blob/master/ProjectWeek9/StudioGhibli/app/src/main/java/shota/cs3231/com/studioghibli/customWidget/FilmAdapter.kt)
+    - [Main activity code](https://github.com/ShotaKu/AndroidAppDev/blob/master/ProjectWeek9/StudioGhibli/app/src/main/java/shota/cs3231/com/studioghibli/MainActivity.kt)
