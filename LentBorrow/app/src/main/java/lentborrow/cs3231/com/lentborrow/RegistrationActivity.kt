@@ -1,43 +1,71 @@
 package lentborrow.cs3231.com.lentborrow
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import kotlinx.android.synthetic.main.activity_registration.*
 import lentborrow.cs3231.com.lentborrow.controller.activity.ActivityMigrationController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import lentborrow.cs3231.com.lentborrow.controller.auth.LoginController
+import lentborrow.cs3231.com.lentborrow.controller.database.user.User
+import lentborrow.cs3231.com.lentborrow.controller.database.user.UserController
+import lentborrow.cs3231.com.lentborrow.controller.localValue.LocalValueController
+import lentborrow.cs3231.com.lentborrow.generic.MessageController
 
 class RegistrationActivity : AppCompatActivity() {
-    private var mAuth: FirebaseAuth? = null
+    //private var mAuth: FirebaseAuth? = null
+    val lCon = LoginController();
+    var mCon = MessageController(this);
+    val uCon = UserController();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
-
-        //Check last login
-        mAuth = FirebaseAuth.getInstance();
-        val currentUser = mAuth!!.getCurrentUser();
-        if(currentUser != null){
-
-        }
-        else{
-            val name = userNameRegistration.text.toString();
-            val pass = passwordRegistration.text.toString();
-        }
+        mCon = MessageController(this);
     }
 
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
+        if(lCon.isLogedin()){
 
+        }
     }
+
+    fun Register(view: View){
+        val email = email_registration.text.toString();
+        val pass = passwordRegistration.text.toString();
+        lCon.Register(this,email,pass,
+                fun (email,pass){
+                    //Login after registration
+                    val uName = userNameRegistration.text.toString();
+                    val user = uCon.createNewUser(User(uName,email));
+                    lCon.Login(this, email, pass,
+                            fun (email:String,pass:String){
+                                val lvCon = LocalValueController(this);
+                                lvCon.setString("email",email);
+                                lvCon.setString("password",pass);
+                                mCon.showToast("Hi,"+email);
+                            }
+                            , fun (task: Task<AuthResult>){
+                                //Failed
+                                mCon.showToast("Login failed:"+task.exception)
+                            }
+                    );
+                },
+                fun(task){
+                    //Fail to register
+                    mCon.showToast("Registration failed:"+task.exception)
+                }
+        )
+    }
+
     fun toLogin(view: View){
         val name = userNameRegistration.text.toString();
         val pass = passwordRegistration.text.toString();
         val amController = ActivityMigrationController();
         amController.setLoginActivity(this)
-                .pass("userName",name)
+                .pass("email",name)
                 .pass("password",pass)
                 .go();
     }

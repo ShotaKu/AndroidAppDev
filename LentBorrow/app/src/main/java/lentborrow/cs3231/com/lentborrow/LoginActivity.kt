@@ -5,38 +5,49 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import lentborrow.cs3231.com.lentborrow.controller.activity.ActivityMigrationController
 import lentborrow.cs3231.com.lentborrow.controller.auth.LoginController
+import lentborrow.cs3231.com.lentborrow.controller.localValue.LocalValueController
 
 class LoginActivity : AppCompatActivity() {
     var fbAuth = FirebaseAuth.getInstance()
 
+    //Awake
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
     }
 
+    //Start
     override fun onResume() {
         super.onResume()
-        val name = intent.getStringExtra("userName");
-        val pass = intent.getStringExtra("password")
-        userName_login.setText(name, TextView.BufferType.EDITABLE);
+
+        val lCon = LocalValueController(this);
+        var email = lCon.getString("email");
+        var pass = lCon.getString("password")
+
+        if(email.isEmpty() || pass.isEmpty()){
+            email = intent.getStringExtra("email");
+            pass = intent.getStringExtra("password")
+        }
+        email_login.setText(email, TextView.BufferType.EDITABLE);
         password_login.setText(pass, TextView.BufferType.EDITABLE);
     }
 
+    //Login button function
     fun Login(view: View) {
-        val name = userName_login.text.toString();
+        val name = email_login.text.toString();
         val pass = password_login.text.toString();
-        signIn(view, name, pass);
+        login(view, name, pass);
     }
 
+    //go to registration activity
     fun toRegistration(view: View) {
-        val name = userName_login.text.toString();
+        val name = email_login.text.toString();
         val pass = password_login.text.toString();
         val amCon = ActivityMigrationController();
         amCon.setRegistrationActivity(this)
@@ -45,17 +56,23 @@ class LoginActivity : AppCompatActivity() {
                 .go()
     }
 
-    fun signIn(view: View, email: String, password: String) {
+    //
+    fun login(view: View, email: String, password: String) {
         showMessage("Authenticating...")
-        LoginController().Login(this, email, password,
-            (fun (email:String,pass:String){
-                showMessage("Hi "+email);
-            }), (fun (task: Task<AuthResult>){
-                showMessage("Error: ${task.exception?.message}")
-            })
+
+        val lCon = LoginController();
+
+        lCon.Login(this, email, password,
+                fun (email:String,pass:String){
+                    showMessage("Hi "+email);
+                    val lvCon = LocalValueController(this);
+                    lvCon.setString("email",email);
+                    lvCon.setString("password",pass);
+                }
+            , fun (task: Task<AuthResult>){
+                    showMessage("Error: ${task.exception?.message}")
+                }
         );
-
-
     }
 
     fun showMessage(message: String) {
