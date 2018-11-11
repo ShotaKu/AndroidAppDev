@@ -8,18 +8,14 @@
     tools:context=".BookDetailActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/bookImage_detail"
         android:layout_width="138dp"
-        android:layout_height="190dp"
+        android:layout_height="191dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.026"
@@ -39,7 +35,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/bookImage_detail"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -54,7 +50,7 @@
         android:text="for trade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/bookImage_detail"
         app:layout_constraintTop_toBottomOf="@+id/bookName_detail" />
 
     <TextView
@@ -70,7 +66,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/bookImage_detail"
         app:layout_constraintTop_toBottomOf="@+id/tradeType_detail" />
 
     <TextView
@@ -89,14 +85,13 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/bookImage_detail"
         app:layout_constraintTop_toBottomOf="@+id/bookCategory_detail" />
 
     <TextView
         android:id="@+id/tradeAt_detail"
         android:layout_width="205dp"
-        android:layout_height="53dp"
-        android:layout_marginBottom="360dp"
+        android:layout_height="89dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -104,73 +99,65 @@
         android:layout_marginTop="8dp"
         android:text="Trade at: some where"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/bookOwner_detail"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/bookImage_detail"
+        app:layout_constraintTop_toBottomOf="@+id/bookOwner_detail" />
 
     <Spinner
-        android:id="@+id/tradeWithSpinner"
+        android:id="@+id/tradeWithSpinner_detail"
         android:layout_width="186dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintStart_toEndOf="@+id/tradeWith_detail"
         app:layout_constraintTop_toBottomOf="@+id/tradeAt_detail" />
 
     <Spinner
-        android:id="@+id/tradeWithSpinner2"
+        android:id="@+id/tradeOnSpinner_detail"
         android:layout_width="186dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="335dp" />
+        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintStart_toEndOf="@+id/tradeOn_detail"
+        app:layout_constraintTop_toBottomOf="@+id/tradeWithSpinner_detail" />
 
     <TextView
         android:id="@+id/tradeWith_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="TextView"
+        android:layout_width="106dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Trade with:"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tradeWithSpinner"
-        app:layout_constraintHorizontal_bias="0.773"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.205"
-        tools:text="Trade with:" />
+        app:layout_constraintTop_toBottomOf="@+id/tradeAt_detail" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/tradeOn_detail"
+        android:layout_width="98dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
         android:text="Trade on:"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tradeWithSpinner2"
-        app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tradeWith_detail"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintTop_toBottomOf="@+id/tradeWith_detail" />
 
     <Button
         android:id="@+id/send_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -180,6 +167,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tradeWithSpinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/tradeOnSpinner_detail"
+        app:layout_constraintVertical_bias="0.354" />
 
 </android.support.constraint.ConstraintLayout>

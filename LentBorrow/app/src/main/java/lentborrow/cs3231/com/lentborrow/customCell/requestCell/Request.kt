@@ -1,6 +1,6 @@
 package lentborrow.cs3231.com.lentborrow.customCell.requestCell
 
-import lentborrow.cs3231.com.lentborrow.customCell.Book
+import lentborrow.cs3231.com.lentborrow.controller.database.book.Book
 import java.util.*
 
 class Request() {

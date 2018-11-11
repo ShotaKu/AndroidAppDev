@@ -39,7 +39,7 @@ class RegistrationActivity : AppCompatActivity() {
                 fun (email,pass){
                     //Login after registration
                     val uName = userNameRegistration.text.toString();
-                    val user = uCon.createNewUser(User(uName,email));
+                    val user = uCon.create(User(uName,email));
                     lCon.Login(this, email, pass,
                             fun (email:String,pass:String){
                                 val lvCon = LocalValueController(this);
@@ -61,11 +61,11 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     fun toLogin(view: View){
-        val name = userNameRegistration.text.toString();
+        val email = userNameRegistration.text.toString();
         val pass = passwordRegistration.text.toString();
         val amController = ActivityMigrationController();
         amController.setLoginActivity(this)
-                .pass("email",name)
+                .pass("email",email)
                 .pass("password",pass)
                 .go();
     }

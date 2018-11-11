@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 list.addView(text);
             }
-            val cell = createCell(SimpleDateFormat("dd/MM/yyyy").format(dateTime.time),data.preTaxNav.toString(),data.preTaxBid.toString());
+            val cell = createCell(SimpleDateFormat("'Day 'dd").format(dateTime.time),data.preTaxNav.toString(),(data.change.toString()+"%"));
             list.addView(cell);
         }
     }

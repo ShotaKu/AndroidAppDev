@@ -47,11 +47,11 @@ class LoginActivity : AppCompatActivity() {
 
     //go to registration activity
     fun toRegistration(view: View) {
-        val name = email_login.text.toString();
+        val mail = email_login.text.toString();
         val pass = password_login.text.toString();
         val amCon = ActivityMigrationController();
         amCon.setRegistrationActivity(this)
-                .pass("userName", name)
+                .pass("email",mail)
                 .pass("password", pass)
                 .go()
     }
@@ -68,6 +68,11 @@ class LoginActivity : AppCompatActivity() {
                     val lvCon = LocalValueController(this);
                     lvCon.setString("email",email);
                     lvCon.setString("password",pass);
+                    val amCon = ActivityMigrationController();
+//                    amCon.setRequestBoxActivity(this)
+//                            .pass("email",email)
+//                            .go()
+                    amCon.setSearchActivity(this);
                 }
             , fun (task: Task<AuthResult>){
                     showMessage("Error: ${task.exception?.message}")

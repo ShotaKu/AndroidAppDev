@@ -2,7 +2,7 @@ package lentborrow.cs3231.com.lentborrow
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import lentborrow.cs3231.com.lentborrow.customCell.User
+import lentborrow.cs3231.com.lentborrow.controller.database.user.User
 
 class UserDetailActivity : AppCompatActivity() {
 
@@ -13,7 +13,7 @@ class UserDetailActivity : AppCompatActivity() {
 
     }
 
-    fun setUser(user:User){
+    fun setUser(user: User){
 
     }
 

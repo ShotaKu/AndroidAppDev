@@ -3,9 +3,7 @@ package lentborrow.cs3231.com.lentborrow.controller.activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
-import lentborrow.cs3231.com.lentborrow.BookDetailActivity
-import lentborrow.cs3231.com.lentborrow.LoginActivity
-import lentborrow.cs3231.com.lentborrow.RegistrationActivity
+import lentborrow.cs3231.com.lentborrow.*
 
 open class ActivityMigrationBuilder{
     var intent: Intent? = null;
@@ -19,7 +17,11 @@ open class ActivityMigrationBuilder{
     protected final val activityIndex = mutableMapOf(
             "Login" to LoginActivity::class.java
             ,"Register" to RegistrationActivity::class.java
-            ,"BookDetail" to BookDetailActivity::class.java)
+            ,"BookDetail" to BookDetailActivity::class.java
+            ,"RequestBox" to RequestBoxActivity::class.java
+            , "Search" to SearchActivity::class.java
+            ,"BookDetail" to BookDetailActivity::class.java
+            ,"UserDetail" to UserDetailActivity::class.java)
 
     protected fun set(context: Context,activityName: String){
         val act:Class<out AppCompatActivity>? = activityIndex.get(activityName);

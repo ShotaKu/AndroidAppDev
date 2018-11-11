@@ -16,10 +16,14 @@ class RequestBoxActivity : AppCompatActivity() {
         setContentView(R.layout.activity_request_box)
         setTitle("Request Box");
 
+        val userEmail = intent.getStringExtra("email");
+
+
+
         val rView = recyclerView
         rView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
         val student = ArrayList<Request>()
-        student.add(Request());
+        //student.add(Request());
         //student.add()
 
         var adapter = RequestAdapter(student);

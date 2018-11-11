@@ -15,4 +15,20 @@ class ActivityMigrationController() : ActivityMigrationBuilder(){
     public fun setRegistrationActivity(context: Context): ActivityMigrationBuilder {
         return ActivityMigrationController(context,"Register");
     }
+
+    fun setRequestBoxActivity(context: Context): ActivityMigrationBuilder {
+        return ActivityMigrationController(context,"RequestBox")
+    }
+
+    fun setSearchActivity(context: Context):ActivityMigrationBuilder{
+        return ActivityMigrationController(context,"Search")
+    }
+
+    fun setBookDetail(context: Context):ActivityMigrationBuilder {
+        return ActivityMigrationController(context,"BookDetail")
+    }
+
+    fun setUserDetail(context: Context):ActivityMigrationBuilder {
+        return ActivityMigrationController(context,"UserDetail")
+    }
 }
