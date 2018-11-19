@@ -1,5 +1,6 @@
 package com.shota.android.firebaseconnection
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -26,14 +27,15 @@ class MemoListAdapter(val studentList: ArrayList<Memo>): RecyclerView.Adapter<Me
         var name = studentList[p1].title;
         var con = studentList[p1].content
         viewHolder.title.text = name;
-        if(10<con.length){
-            con = con.substring(0,9) + "...";
+        if(20<con.length){
+            con = con.substring(0,19) + "...";
         }
         viewHolder.content.text = con;
         viewHolder.itemView.setOnClickListener {
             //Toast.makeText(this, studentList[p1].id+": "+studentList[p1].name, Toast.LENGTH_SHORT).show()
             //TODO create toast pop up when click card view
-            Toast.makeText(it.context,con+":"+name, Toast.LENGTH_LONG).show()
+            val intent = Intent(viewHolder.itemView.context, MemoActivity::class.java);
+            //Toast.makeText(it.context,con+":"+name, Toast.LENGTH_LONG).show()
         }
     }
 
