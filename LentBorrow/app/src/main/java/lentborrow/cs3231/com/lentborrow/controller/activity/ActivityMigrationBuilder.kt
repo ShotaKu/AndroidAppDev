@@ -21,7 +21,10 @@ open class ActivityMigrationBuilder{
             ,"RequestBox" to RequestBoxActivity::class.java
             , "Search" to SearchActivity::class.java
             ,"BookDetail" to BookDetailActivity::class.java
-            ,"UserDetail" to UserDetailActivity::class.java)
+            ,"UserDetail" to UserDetailActivity::class.java
+            ,"AddBook" to AddBookActivity::class.java
+            ,"UserBook" to UserBookActivity::class.java
+    )
 
     protected fun set(context: Context,activityName: String){
         val act:Class<out AppCompatActivity>? = activityIndex.get(activityName);

@@ -13,7 +13,7 @@ class LocalValueController(context: Context){
         this.editor = local!!.edit();
     }
 
-    fun getString(key:String):String{
+    private fun getString(key:String):String{
         return local!!.getString(key,"");
     }
 
@@ -25,8 +25,32 @@ class LocalValueController(context: Context){
         editor!!.putBoolean(key,value);
         editor!!.commit();
     }
-    fun setString(key: String, value: String){
+
+    private fun setString(key: String, value: String){
         editor!!.putString(key,value);
         editor!!.commit();
+    }
+
+    fun getEmail(): String {
+        return getString("Email")
+    }
+
+    fun setEmail(email: String) {
+        setString("email",email)
+    }
+
+    fun setPassword(password:String){
+        setString("password", password);
+    }
+
+    fun getPassword():String{
+        return getString("password")
+    }
+
+    fun setID(userID: String) {
+        setString("userID",userID);
+    }
+    fun getID():String {
+        return getString("userID");
     }
 }

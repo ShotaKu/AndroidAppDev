@@ -29,10 +29,12 @@ class BookDetailActivity : AppCompatActivity() {
     fun getBook(bookID:String){
         var book = Book()
 
-        bCon.getBooksByID(bookID,fun(snapshots:ArrayList<DataSnapshot>){
-            val book = bCon.snapShotBookAdapter(snapshots[0])
-            showBookDetail(book);
-        },fun(e:DatabaseError){
+        bCon.getBookByID(bookID,{ book-> run {
+            if(book != null)
+                showBookDetail(book);
+            else
+                MessageController(this).showToast("Book detail broken");
+        }},{ error ->
             MessageController(this).showToast("Book not found");
         })
     }

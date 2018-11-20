@@ -31,4 +31,12 @@ class ActivityMigrationController() : ActivityMigrationBuilder(){
     fun setUserDetail(context: Context):ActivityMigrationBuilder {
         return ActivityMigrationController(context,"UserDetail")
     }
+
+    fun setAddBook(context: Context):ActivityMigrationBuilder {
+        return ActivityMigrationController(context,"AddBook")
+    }
+
+    fun setUserBook(context: Context):ActivityMigrationBuilder {
+        return ActivityMigrationController(context,"UserBook")
+    }
 }

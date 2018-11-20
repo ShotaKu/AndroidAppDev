@@ -1,40 +1,33 @@
 package com.shota.android.firebaseconnection
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import kotlinx.android.synthetic.main.activity_memo.*
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-
 
 
 class MemoActivity : AppCompatActivity() {
 
-    var ref:String? = "";
+    var ref: String? = "";
+    var title = "";
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_memo)
-        val title = intent.getStringExtra("title")
+        title = intent.getStringExtra("title")
         val content = intent.getStringExtra("content")
         ref = intent.getStringExtra("Ref");
 
-        if(title != null && !title.isEmpty()){
+        if (title != null && !title.isEmpty()) {
             title_memo.setText(title);
         }
 
-        if(content != null && !content.isEmpty()){
-            content_memo.setText(title);
+        if (content != null && !content.isEmpty()) {
+            content_memo.setText(content);
         }
-
     }
 
-    fun onClickSave(view: View){
-        if(ref != null && !ref!!.isEmpty()){
-            val database = FirebaseDatabase.getInstance()
-            val myRef = database.getReference(ref+title_memo.text.toString())
-
-            myRef.setValue(content_memo.text.toString())
-        }
+    fun onClickSave(view: View) {
+        val dCon = DatabaseController()
+        dCon.setMemo(title,title_memo.text.toString(),content_memo.text.toString())
     }
 }

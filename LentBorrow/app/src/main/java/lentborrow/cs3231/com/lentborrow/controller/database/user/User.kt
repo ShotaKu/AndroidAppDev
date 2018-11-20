@@ -21,6 +21,7 @@ class User(){
         this.email = email;
         this.name = name;
         this.lending = lending;
+        this.userID = userID;
     }
 
     fun getDatabaseForm():DatabaseForm{

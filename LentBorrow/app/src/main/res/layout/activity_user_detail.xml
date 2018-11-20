@@ -41,6 +41,17 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/editButton_userDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="Edit profile"
+                android:textColor="@color/colorAccent"
+                android:textSize="24sp"
+                android:clickable="true"
+                android:visibility="invisible" />
+
+            <TextView
                 android:id="@+id/userBookTitle_userDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -33,5 +33,11 @@ class MainActivity : AppCompatActivity() {
     fun search(view: View){
         amController.setSearchActivity(this).go();
     }
+    fun user(view: View){
+        amController.setUserDetail(this).pass("userID","-LN0-bh6HggS-bPicKJY").go();
+    }
+    fun books(view: View){
+        amController.setUserBook(this).go()
+    }
     data class test(val message: String, val num: Int)
 }

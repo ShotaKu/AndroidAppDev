@@ -1,6 +1,7 @@
-## Lecture note week 11
-### How to connect firebase in Kotlin
+# Lecture note week 11
+# How to use firebase in Kotlin
 
+## Connect to firebase
 1. Create a project on firebase side (if didnt prepared)
     - Open firebase and signin or signup
     - Create new project and select region
@@ -53,11 +54,11 @@
         ```
     - Sync gradle to project.
 
-## How to use firebase library
-### Authentication 
+# How to use firebase library
+## Authentication 
 
- - Login
-    - Almost all function in firebase library is parallel proceed function. So, you need use it carefully
+### Login
+Almost all function in firebase library is **parallel proceed function**. So, you need use it carefully
 
     1. Initialize firebase app in project
         - First of all, you need to initialize app before use all functions by following code
@@ -86,46 +87,129 @@
                             })
         ```
 
-### Realtime database
- - Read 
-    1. Get instance of firebase realtime database by following code.
+## Realtime database
+### Read 
+1. Get instance of firebase realtime database by following code.
 
-        ```kotlin
-        val database = FirebaseDatabase.getInstance()
-        ```
+    ```kotlin
+    val database = FirebaseDatabase.getInstance()
+    ```
 
-        - Make sure that you already initialize firebase app in project. If not, initialize it before get instance.
+    Make sure that you already initialize firebase app in project. If not, initialize it before get instance.
 
-            ```kotlin
-            FirebaseApp.initializeApp(this); 
-            val database = FirebaseDatabase.getInstance()
-            ```
-    2. Set reference to directory in database which you want to use
+    ```kotlin
+    FirebaseApp.initializeApp(this); 
+    val database = FirebaseDatabase.getInstance()
+    ```
 
-        ```kotlin
-        val myRef = database.getReference(email)
-        ```
+2. Set reference to directory in database which you want to use
 
-    3. Set value on reference
+    ```kotlin
+    val myRef = database.getReference(email)
+    ```
 
-        ```kotlin
-        myRef.addValueEventListener(object : ValueEventListener {
+3. Read value on reference
 
-            //Take snapshot of all data in reference
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val memoList:ArrayList<Memo> = ArrayList()
-                for(data in dataSnapshot.children){
-                    // process each data in reference
-                    val title = data.key.toString();
-                    val content = data.value.toString()
-                    val memo = Memo(title, content);
-                    memoList.add(memo);
-                }
-                list.adapter = MemoListAdapter(memoList);
+    ```kotlin
+    myRef.addValueEventListener(object : ValueEventListener {
+
+        //Take snapshot of all data in reference
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            val memoList:ArrayList<Memo> = ArrayList()
+            for(data in dataSnapshot.children){
+                // process each data in reference
+                val title = data.key.toString();
+                val content = data.value.toString()
+                val memo = Memo(title, content);
+                memoList.add(memo);
             }
-            // If error
+            list.adapter = MemoListAdapter(memoList);
+        }
+        // If error
+        override fun onCancelled(error: DatabaseError) {
+            Toast.makeText(context, error.message.toString(),Toast.LENGTH_LONG);
+        }
+    })
+    ```
+
+- You can create class to manage database like following code. This code will get all memo in firebase.
+    
+    Implementation:
+    ```kotlin
+    fun getMemo(title: String, successCallback: (memo: Memo) -> Unit, failedCallback: (error: DatabaseError) -> Unit) {
+        val ref = database.getReference(reference + "/" + title);
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val memo = Memo(dataSnapshot)
+                successCallback(memo);
+            }
+
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, error.message.toString(),Toast.LENGTH_LONG);
+                failedCallback(error);
+            }
+        });
+    }
+    ```
+
+    Usage:
+    ```kotlin
+        val list = rView_main
+        list.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        val context = this.baseContext;
+
+        dCon.getAllMemo({ memoList ->   //memoList is result that get from firebase.
+            list.adapter = MemoListAdapter(memoList);
+        },{ error ->    // get FirebaseError class if error occur
+            Toast.makeText(context, error.message.toString(),Toast.LENGTH_LONG);
+        })
+    ```
+
+### Set
+1. Get instance of firebase realtime database by following code.
+
+    ```kotlin
+    val database = FirebaseDatabase.getInstance()
+    ```
+
+    Make sure that you already initialize firebase app in project. If not, initialize it before get instance.
+
+    ```kotlin
+    FirebaseApp.initializeApp(this); 
+    val database = FirebaseDatabase.getInstance()
+    ```
+
+2. Set reference to directory in database which you want to use
+
+    ```kotlin
+    val myRef = database.getReference("Memo")
+    ```
+
+3. Set value on reference
+
+    ```kotlin
+    myRef.setValue("Hello,World!")
+    ```
+
+    You can add SuccessListener when write value too.
+    ```kotlin
+    mDatabase.child("users").child(userId).setValue(user)
+        .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                // Write was successful!
+                // ...
             }
         })
-        ```
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Write failed
+                // ...
+            }
+        });
+    ```
+
+## Reference
+ - [Real time database: read and write](https://firebase.google.com/docs/database/android/read-and-write)
+ - [Add firebase on android project](https://firebase.google.com/docs/android/setup)
+ - [Password authentication](https://firebase.google.com/docs/auth/android/password-auth)

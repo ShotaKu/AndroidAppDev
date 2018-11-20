@@ -25,6 +25,8 @@ class BookAdapter(val requests: ArrayList<Book>): RecyclerView.Adapter<BookAdapt
     override fun onBindViewHolder(viewHolder: BookAdapter.ViewHolder, p1: Int) {
         var name = requests[p1].name
         var tType = requests[p1].tradeType;
+        if(tType == "for both lenting and trading")
+            tType = "lending/trading";
         viewHolder.id = requests[p1].id;
         viewHolder.bookName.setText(name);
         viewHolder.tType.setText(tType)

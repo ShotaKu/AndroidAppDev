@@ -11,21 +11,23 @@ class UserController(): DatabaseController(){
         user.userID = userID;
         return user;
     }
-    fun getUserByEmail(email:String, successCallback: (snapShot: DataSnapshot) -> Unit   // Unit = void
+    fun getUserByEmail(email:String, successCallback: (user: User) -> Unit   // Unit = void
     , failedCallback:(error: DatabaseError) -> Unit){
 
         finds("User",
                 { s:DataSnapshot -> searchUserByEmail(email,s) }
-                ,successCallback
+                ,{ snapShot -> run {
+                    successCallback(dataSnapshotAdapter(snapShot))
+                }}
                 ,failedCallback)
     }
 
-    fun getUserByID(id:String, successCallback: (snapShot: User) -> Unit   // Unit = void
+    fun getUserByID(id:String, successCallback: (user: User) -> Unit   // Unit = void
                     , failedCallback:(error: DatabaseError) -> Unit){
         finds("User",
                 { s:DataSnapshot -> searchUserByID(id,s) }
                 ,fun(s:DataSnapshot){
-
+                    successCallback(dataSnapshotAdapter(s))
                 }
                 ,failedCallback)
     }
@@ -42,7 +44,16 @@ class UserController(): DatabaseController(){
     }
 
     fun dataSnapshotAdapter(snapShot: DataSnapshot):User{
-        return User();
+        val userID:String = snapShot.key.toString();
+        val userName:String = snapShot.child("userName").value.toString();
+        val email:String = snapShot.child("email").value.toString();
+        val name:String = snapShot.child("name").value.toString();
+        val lending:ArrayList<String> = ArrayList();
+        for(book in snapShot.child("Lending").children){
+            lending.add(book.value.toString());
+        }
+
+        return User(userID,userName,email,name,lending);
     }
 
     fun searchUserByID(id: String, snapShot: DataSnapshot):Boolean{

@@ -45,4 +45,10 @@ class LoginController()
     fun isLogedin():Boolean {
         return fbAuth.currentUser != null;
     }
+
+    fun logOut() {
+        if(isLogedin()){
+            fbAuth.signOut();
+        }
+    }
 }

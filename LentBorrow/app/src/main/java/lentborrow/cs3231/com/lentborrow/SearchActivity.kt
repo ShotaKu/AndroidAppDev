@@ -45,13 +45,8 @@ class SearchActivity : AppCompatActivity() {
     private fun search(key:String){
         val bCon = BookController();
 
-         bCon.getBooksByName(key,fun(s:ArrayList<DataSnapshot>){
-             val books = ArrayList<Book>()
-
-            for(snapshot in s){
-                books.add(bCon.snapShotBookAdapter(snapshot))
-            }
-             showResult(books);
+         bCon.getBooksByName(key,{books ->
+                 showResult(books);
          },fun (e:DatabaseError){
              Log.d("ERROR", e.message)
          })

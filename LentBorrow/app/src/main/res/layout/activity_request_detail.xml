@@ -50,12 +50,12 @@
                     android:id="@+id/yourBook"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
+
                     android:layout_alignParentTop="true"
                     android:gravity="center"
                     android:text="Book Name"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
+                    <!--android:layout_alignParentStart="true"-->
             </RelativeLayout>
 
         </LinearLayout>

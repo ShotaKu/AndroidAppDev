@@ -11,7 +11,9 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import lentborrow.cs3231.com.lentborrow.controller.activity.ActivityMigrationController
 import lentborrow.cs3231.com.lentborrow.controller.auth.LoginController
+import lentborrow.cs3231.com.lentborrow.controller.database.user.UserController
 import lentborrow.cs3231.com.lentborrow.controller.localValue.LocalValueController
+import lentborrow.cs3231.com.lentborrow.generic.MessageController
 
 class LoginActivity : AppCompatActivity() {
     var fbAuth = FirebaseAuth.getInstance()
@@ -20,6 +22,17 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        logOut()
+    }
+
+    fun logOut(){
+        //@TODO check here
+        val lCon = LoginController();
+        lCon.logOut();
+        val lvCon = LocalValueController(this)
+        lvCon.setID("")
+        lvCon.setPassword("")
+        lvCon.setEmail("");
     }
 
     //Start
@@ -27,12 +40,16 @@ class LoginActivity : AppCompatActivity() {
         super.onResume()
 
         val lCon = LocalValueController(this);
-        var email = lCon.getString("email");
-        var pass = lCon.getString("password")
+        var email = lCon.getEmail();
+        var pass = lCon.getPassword()
 
-        if(email.isEmpty() || pass.isEmpty()){
-            email = intent.getStringExtra("email");
-            pass = intent.getStringExtra("password")
+        if (email.isEmpty() || pass.isEmpty()) {
+            var intEmail = intent.getStringExtra("email");
+            if(intEmail!=null)
+                email = intEmail!!;
+            var intPass = intent.getStringExtra("password")
+            if(intPass!=null)
+                pass = intPass!!;
         }
         email_login.setText(email, TextView.BufferType.EDITABLE);
         password_login.setText(pass, TextView.BufferType.EDITABLE);
@@ -51,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
         val pass = password_login.text.toString();
         val amCon = ActivityMigrationController();
         amCon.setRegistrationActivity(this)
-                .pass("email",mail)
+                .pass("email", mail)
                 .pass("password", pass)
                 .go()
     }
@@ -61,23 +78,29 @@ class LoginActivity : AppCompatActivity() {
         showMessage("Authenticating...")
 
         val lCon = LoginController();
-
-        lCon.Login(this, email, password,
-                fun (email:String,pass:String){
-                    showMessage("Hi "+email);
-                    val lvCon = LocalValueController(this);
-                    lvCon.setString("email",email);
-                    lvCon.setString("password",pass);
+        lCon.logOut();
+        lCon.Login(this, email, password, { email, password ->
+            run {
+                showMessage("Hi " + email);
+                val lvCon = LocalValueController(this);
+                lvCon.setEmail(email);
+                lvCon.setPassword(password);
+                val uCon = UserController()
+                uCon.getUserByEmail(email,{ user -> run{
+                    //@TODO go to Request box activity
+                    lvCon.setID(user.userID)
                     val amCon = ActivityMigrationController();
 //                    amCon.setRequestBoxActivity(this)
 //                            .pass("email",email)
 //                            .go()
-                    amCon.setSearchActivity(this);
-                }
-            , fun (task: Task<AuthResult>){
-                    showMessage("Error: ${task.exception?.message}")
-                }
-        );
+                }},{error ->
+                    MessageController(this).showToast(error.message);
+                })
+
+            }
+        }, { task ->
+            showMessage("Error: ${task.exception?.message}")
+        });
     }
 
     fun showMessage(message: String) {

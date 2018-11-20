@@ -27,14 +27,22 @@ class MemoListAdapter(val studentList: ArrayList<Memo>): RecyclerView.Adapter<Me
         var name = studentList[p1].title;
         var con = studentList[p1].content
         viewHolder.title.text = name;
-        if(20<con.length){
-            con = con.substring(0,19) + "...";
+        if(30<con.length){
+            viewHolder.content.text = con.substring(0,29) + "...";
+        }else{
+            viewHolder.content.text = con
         }
-        viewHolder.content.text = con;
+
         viewHolder.itemView.setOnClickListener {
             //Toast.makeText(this, studentList[p1].id+": "+studentList[p1].name, Toast.LENGTH_SHORT).show()
             //TODO create toast pop up when click card view
             val intent = Intent(viewHolder.itemView.context, MemoActivity::class.java);
+            intent.apply {
+                putExtra("title",name);
+                putExtra("content",con);
+
+            }
+            viewHolder.itemView.context.startActivity(intent)
             //Toast.makeText(it.context,con+":"+name, Toast.LENGTH_LONG).show()
         }
     }
