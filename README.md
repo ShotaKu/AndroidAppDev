@@ -1,6 +1,8 @@
 # AndroidAppDev Repository
 This repository is for store android project which I create in "Android application development".
 
+Each week directory have `MEMO.md` file for lecture note which summize each week lecture.
+
 ## Index
 * [LentBorrow](https://github.com/ShotaKu/AndroidAppDev/tree/master/LentBorrow)
     1. Term project files
@@ -31,5 +33,17 @@ This repository is for store android project which I create in "Android applicat
 * [Project week 8](https://github.com/ShotaKu/AndroidAppDev/tree/master/ProjectWeek8)
     1. Create application which has 2 activity pages and swtich them.
     2. Create student list app which can see detail student information if tap on list card.
+* [Project week 9](https://github.com/ShotaKu/AndroidAppDev/tree/master/ProjectWeek9)
+    1. Get JSON from API
+    2. Parse JSON to object class
+* [Project week 10](https://github.com/ShotaKu/AndroidAppDev/tree/master/ProjectWeek10)
+    1. Put JSON file on local app folder
+    2. Read JSON file from local folder
+* [Project week 11](https://github.com/ShotaKu/AndroidAppDev/tree/master/ProjectWeek11)
+    1. Connect to Firebase
+    2. Login Firebase Authentication
+    3. Read/write value on Firebase real tile database
+* [Project week 12](https://github.com/ShotaKu/AndroidAppDev/tree/master/ProjectWeek12)
+    1. Save/load value in local strage
 * README.md
     - This file
