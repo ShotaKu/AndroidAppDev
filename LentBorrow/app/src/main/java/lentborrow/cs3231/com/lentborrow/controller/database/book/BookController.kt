@@ -7,8 +7,11 @@ import lentborrow.cs3231.com.lentborrow.controller.database.user.UserController
 import java.lang.Boolean.parseBoolean
 
 class BookController(): DatabaseController(){
-    fun create(book: Book): Book {
-        return Book();
+    fun create(book: Book,userID:String): Book {
+        val bookID = this.pushObject("Book",book.getDatabaseForm(),false);
+        this.pushString("User/"+userID+"/Lending",bookID);
+        book.id = bookID;
+        return book;
     }
 
     fun getBooksByName(name:String, successCallback: (books: ArrayList<Book>) -> Unit   // Unit = void

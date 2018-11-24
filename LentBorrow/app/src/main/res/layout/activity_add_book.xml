@@ -24,14 +24,34 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/title_addBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Post new book"
+                android:textSize="24sp" />
+
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="136dp"
+                android:id="@+id/cameraIcon_addBook"
+                android:layout_width="182dp"
                 android:layout_height="173dp"
-                app:srcCompat="@drawable/mybutton"
+                android:layout_margin="10dp"
+                android:clickable="true"
+                android:focusable="auto"
+                android:onClick="onClickLoadImage"
+                app:srcCompat="@drawable/camera"
                 tools:layout_editor_absoluteX="139dp"
-                tools:layout_editor_absoluteY="130dp"
-                android:layout_margin="10dp"/>
+                tools:layout_editor_absoluteY="130dp" />
+
+            <TextView
+                android:id="@+id/title2_addBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Tap to choose Photo"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/bookName_addBook"
@@ -41,6 +61,35 @@
                 android:ems="10"
                 android:hint="book name"
                 android:inputType="text" />
+
+            <Spinner
+                android:id="@+id/category_addBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"/>
+
+            <Spinner
+                android:id="@+id/tradeType_addBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"/>
+
+            <EditText
+                android:id="@+id/tradeAt_addBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="Trade book at"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/post_addBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClickPost"
+                android:text="Post" />
+
         </LinearLayout>
     </ScrollView>
 

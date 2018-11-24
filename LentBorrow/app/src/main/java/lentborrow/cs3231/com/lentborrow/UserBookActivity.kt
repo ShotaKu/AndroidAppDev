@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_user_book.*
 import kotlinx.android.synthetic.main.book_customcell.view.*
+import lentborrow.cs3231.com.lentborrow.controller.activity.ActivityMigrationController
 import lentborrow.cs3231.com.lentborrow.controller.database.book.Book
 import lentborrow.cs3231.com.lentborrow.controller.database.book.BookController
 import lentborrow.cs3231.com.lentborrow.controller.database.user.UserController
@@ -20,7 +21,10 @@ class UserBookActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_book)
+    }
 
+    override fun onResume() {
+        super.onResume()
         val lvCon = LocalValueController(this)
         val id = lvCon.getID();
         val bCon = BookController();
@@ -34,10 +38,9 @@ class UserBookActivity : AppCompatActivity() {
                 MessageController(this).showToast(error.message)
             })
         }
-
     }
     fun toAddBookPage(view: View){
-
+        ActivityMigrationController().setAddBook(this).go()
     }
 //
 //    fun createCell(book: Book): View {

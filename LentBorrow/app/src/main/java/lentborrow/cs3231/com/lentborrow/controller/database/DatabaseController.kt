@@ -37,7 +37,16 @@ open class DatabaseController(){
         val myRef = database.getReference(path)
         myRef.setValue(value);
     }
-    fun pushObject(path:String,value: DatabaseForm):String{
+    fun pushObject(path:String,value: DatabaseForm, withPath:Boolean = true):String{
+        val myRef = database.getReference(path)
+        val userPath:DatabaseReference = myRef.push()
+        setObject(path+ "/" + userPath.key!!,value);
+        if(withPath)
+            return path + userPath.key!!
+        else
+            return userPath.key!!
+    }
+    protected fun pushString(path:String,value: String):String{
         val myRef = database.getReference(path)
         val userPath:DatabaseReference = myRef.push()
         setObject(path+ "/" + userPath.key!!,value);

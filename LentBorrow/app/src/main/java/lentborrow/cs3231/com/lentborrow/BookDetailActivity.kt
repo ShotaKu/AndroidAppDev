@@ -11,14 +11,18 @@ import lentborrow.cs3231.com.lentborrow.controller.database.book.BookController
 import lentborrow.cs3231.com.lentborrow.generic.MessageController
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.opengl.Visibility
 import android.os.AsyncTask
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import lentborrow.cs3231.com.lentborrow.controller.localValue.LocalValueController
 
 
 class BookDetailActivity : AppCompatActivity() {
 
     var bCon = BookController()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_detail)
@@ -26,18 +30,22 @@ class BookDetailActivity : AppCompatActivity() {
         var bookID = intent.getStringExtra("bookID");
         getBook(bookID)
     }
+
     fun getBook(bookID:String){
         var book = Book()
 
         bCon.getBookByID(bookID,{ book-> run {
-            if(book != null)
+            if(book != null){
                 showBookDetail(book);
-            else
+                val lvCon = LocalValueController(this)
+                switchUserBook(lvCon.getID() == book.lentBy)
+            }else
                 MessageController(this).showToast("Book detail broken");
         }},{ error ->
             MessageController(this).showToast("Book not found");
         })
     }
+
     fun showBookDetail(book: Book){
         bookName_detail.text = book.name;
         tradeType_detail.text =  book.tradeType;
@@ -49,6 +57,18 @@ class BookDetailActivity : AppCompatActivity() {
     }
 
     var userID = "";
+
+    fun switchUserBook(isUsers:Boolean){
+        val userBook = yourbook_detail
+        val requestForm = requestForm_detail
+        if(isUsers){
+            userBook.visibility = View.VISIBLE
+            requestForm.visibility = View.INVISIBLE
+        }else{
+            userBook.visibility = View.INVISIBLE
+            requestForm.visibility = View.VISIBLE
+        }
+    }
 
     fun toOwnerDetail(){
         val amCon = ActivityMigrationController()
