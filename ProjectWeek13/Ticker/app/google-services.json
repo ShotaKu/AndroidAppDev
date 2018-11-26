@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "971959668906",
+    "firebase_url": "https://tickers-fbb0e.firebaseio.com",
+    "project_id": "androidappdevweek13",
+    "storage_bucket": "androidappdevweek13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971959668906:android:ad2a102d66432454",
+        "android_client_info": {
+          "package_name": "com.shota.android.ticker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971959668906-5ffs8iiijeregvvn5gfinrcp0nn0nptl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArzpSK83rRu6zCDXQw1XOw1vMzttSZJww"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
