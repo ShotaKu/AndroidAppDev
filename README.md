@@ -1,7 +1,7 @@
 # AndroidAppDev Repository
 This repository is for store android project which I create in "Android application development".
 
-Each week directory have `MEMO.md` file for lecture note which summize each week lecture.
+Each week directory have `README.md` file for lecture note which summize each week lecture.
 
 ## Index
 * [LentBorrow](https://github.com/ShotaKu/AndroidAppDev/tree/master/LentBorrow)
