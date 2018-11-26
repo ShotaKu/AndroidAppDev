@@ -45,5 +45,10 @@ Each week directory have `README.md` file for lecture note which summize each we
     3. Read/write value on Firebase real tile database
 * [Project week 12](https://github.com/ShotaKu/AndroidAppDev/tree/master/ProjectWeek12)
     1. Save/load value in local strage
+* [Project week 13](https://github.com/ShotaKu/AndroidAppDev/tree/master/ProjectWeek13)
+    1. Another way to connect to firebase
+    2. Use firebase project of other user
+    3. Example code
+
 * README.md
     - This file
