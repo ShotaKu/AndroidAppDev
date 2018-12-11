@@ -22,14 +22,14 @@ So, I create Film class for getting data from API. You should make class which h
 You can see that my class has same fields like JSON.
 
 ## How to get JSON from API?
-1. import Http networking library from [kittinunf/Fuel Repository](https://github.com/kittinunf/Fuel) by add following code at **build.gradle(Module:app)**
+1. Import Http networking library from [kittinunf/Fuel Repository](https://github.com/kittinunf/Fuel) by add following code at **build.gradle(Module:app)**
 
     ```Gradle
     api 'com.github.kittinunf.fuel:fuel-android:1.15.1'
     ```
 
 2. Sync gradle for making the library available in project.
-3. Using the library by following library guid.
+3. Using the library by following code.
 
     ```Kotlin
     var index:FilmIndex = FilmIndex();
